@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { prisma } from "../prisma.js";
+import * as uuid from 'uuid';
 
 export const userRouter = Router();
 
@@ -24,6 +25,7 @@ userRouter.post("", async (req, res) => {
 
   const newUser = await prisma.user.create({
     data: {
+      id: uuid.v4(),
       email: user.email,
       name: user.name,
       password: user.password,
